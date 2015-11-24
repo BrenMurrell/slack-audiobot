@@ -1,7 +1,7 @@
 var exec = require('child_process').exec;
 var Slack = require('slack-client');
 var fs = require('fs');
-var config = require('./config.js');
+var config = require('./config/config.js');
 
 //use this to set whether feedback bot is listening. If he's not, feedback will not be given - on at start.
 
