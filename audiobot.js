@@ -131,7 +131,9 @@ slack.on('message', function(message) {
                 //spit out a list of help commands
                 if((trimmedMessage === 'help' || trimmedMessage === ': help') && (started === true)) {
                     channel.send('Type _play_ and then a valid sound name to make me play that sound');
-                    channel.send('Mention me then type _list_ for a list of valid sound names - e.g. _@' + slack.self.name + ' list_');
+                    channel.send('For a list of valid sound names, type _@' + slack.self.name + ' list_');
+                    channel.send('To stop me listening for play events,  type  _@' + slack.self.name + ' stop_');
+                    channel.send('To start me listening for play events,  type  _@' + slack.self.name + ' start_ (I\'m _on_ by default)');
 
                 }
             }

@@ -1,4 +1,3 @@
-# Slack Audiobot
 Welcome!
 
 ## What is Audiobot?
@@ -13,3 +12,11 @@ Audio feedback seemed like a great way to liven up the office, but can also be u
 3. Add your bot's API key to config.js
 4. Run `node audiobot.js` from the command line
 5. Invite your brand new bot into the channels you'd like it to watch.
+
+## Commands
+Here's a couple commands you might like to try:
+* `play bell` - this will play the bell noise (comes with this package)
+* `@BOTNAME help` - get a list of commands you can use with your bot (replace BOTNAME with your bot's name, obviously)
+* `@BOTNAME list` - get a list of valid sound files. If you want more, just dump them in the sounds folder
+* `@BOTNAME stop` - stop the bot listening to requests for sounds
+* `@BOTNAME start` - start the bot listening to requests for sounds  (on by default)
