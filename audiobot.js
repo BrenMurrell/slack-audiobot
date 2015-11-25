@@ -2,6 +2,10 @@ var exec = require('child_process').exec;
 var Slack = require('slack-client');
 var fs = require('fs');
 var config = require('./config/config.js');
+var os = require('os');
+var platform = os.platform();
+
+
 
 //use this to set whether feedback bot is listening. If he's not, feedback will not be given - on at start.
 
@@ -68,14 +72,21 @@ slack.on('message', function(message) {
     if(message.type === 'message') {
         //get message text
         var messageText = message.text;
-
+        var outputDevice = '';
+        var player = 'afplay ';
         if(messageText) {
-            //pick output device 1 = headphones, 2 = speakers (default)
-            var hasTest = message.text.indexOf("test");
-            if(hasTest > -1) {
-                outputDevice = 1;
+            //pick output device 1 = headphones, 2 = speakers (default) - windows only
+            if(platform === 'win32') {
+                player = 'mplayer ';
+                var hasTest = message.text.indexOf("test");
+                if(hasTest > -1) { //test was included, so play through device 1 (headphones)
+                    outputDevice = '-ao dsound:device=1 ';
+                } else {
+                    //test not included so play through device 2 (speakers)
+                    outputDevice = '-ao dsound:device=2 ';
+                }
             } else {
-                outputDevice = 2;
+                outputDevice = '';
             }
 
 
@@ -89,7 +100,7 @@ slack.on('message', function(message) {
 
                 fs.exists(toPlayMp3,function(existsMp3) { //mp3 version of loop
                     if(existsMp3) {
-                        exec('mplayer -ao dsound:device=' + outputDevice + ' ' + toPlayMp3);
+                        exec(player + outputDevice + ' ' + toPlayMp3);
                         played = 'played';
                         channel.send('Played sound: "' + toPlay + '"');
                         console.log('playing: ' + toPlayMp3);
@@ -97,7 +108,7 @@ slack.on('message', function(message) {
                 });
                 fs.exists(toPlayWav,function(existsWav) { //wav version of loop
                     if(existsWav) {
-                        exec('mplayer -ao dsound:device=' + outputDevice + ' ' + toPlayWav);
+                        exec(player + outputDevice + ' ' + toPlayWav);
                         channel.send('Played sound: "' + toPlay + '"');
                         console.log('playing: ' + toPlayWav);
                     }
