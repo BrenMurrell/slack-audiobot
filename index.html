@@ -31,12 +31,12 @@
         <hr>
 
         <section id="main_content">
-          <p>Welcome! </p>
+          <p>Welcome!</p>
 
 <h2>
 <a id="what-is-audiobot" class="anchor" href="#what-is-audiobot" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is Audiobot?</h2>
 
-<p>Audiobot is an audio feedback bot for Slack.  Slack Audiobot is written in node.js.</p>
+<p>Audiobot is an audio feedback bot for Slack.  Slack Audiobot is written in node.js and plays MP3 files from it's /sound directory based on queues from Slack users. Audiobot now also features text-to-speech (TTS) for Mac and Windows.</p>
 
 <h2>
 <a id="why-is-audiobot" class="anchor" href="#why-is-audiobot" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why is Audiobot?</h2>
@@ -47,8 +47,9 @@
 <a id="how-to-audiobot" class="anchor" href="#how-to-audiobot" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to Audiobot</h2>
 
 <ol>
-<li>Grab the repo and run npm install. This will install all of the dependencies Audiobot requires. </li>
-<li>Add a bot integration in Slack <a href="https://slack.com/services/new/bot">here</a> </li>
+<li>Grab the repo and run npm install. This will install all of the dependencies Audiobot requires.</li>
+<li>Add a bot integration in Slack <a href="https://slack.com/services/new/bot">here</a>
+</li>
 <li>Add your bot's API key to config.js</li>
 <li>Run <code>node audiobot.js</code> from the command line</li>
 <li>Invite your brand new bot into the channels you'd like it to watch.</li>
@@ -70,6 +71,8 @@
 <code>@BOTNAME stop</code> - stop the bot listening to requests for sounds</li>
 <li>
 <code>@BOTNAME start</code> - start the bot listening to requests for sounds  (on by default)</li>
+<li>
+<code>@BOTNAME say MESSAGE</code> - Make the bot speak via TTS.</li>
 </ul>
         </section>
 
