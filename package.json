@@ -2,5 +2,5 @@
     "name": "slack-audiobot",
     "version": "0.1.0",
     "description": "A slack audio feedback bot",
-    "dependencies": { "slack-client": "1.4.1", "fs": "" }
+    "dependencies": { "slack-client": "1.4.1", "fs": "","winsay":"0.0.5" }
 }

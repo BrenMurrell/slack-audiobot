@@ -4,7 +4,9 @@ var fs = require('fs');
 var config = require('./config/config.js');
 var os = require('os');
 var platform = os.platform();
-
+if(platform === 'win32') {
+    var winsay = require('winsay');
+}
 
 
 //use this to set whether feedback bot is listening. If he's not, feedback will not be given - on at start.
@@ -89,12 +91,7 @@ slack.on('message', function(message) {
                 outputDevice = '';
             }
 
-            var hasSpeak = message.text.indexOf("speak"); //search for speak  trigger
-            if((hasSpeak > -1) && (started === true)) {
-                var toSpeak = 'say ' + message.text.substring(hasSpeak + 6);
-                exec(toSpeak);
-                console.log(toSpeak);
-            }
+
             var hasPlay = message.text.indexOf("play"); //search for play trigger
             if((hasPlay > -1) && (started === true)) {
                 //if message has the word play in then try and play a message
@@ -152,7 +149,16 @@ slack.on('message', function(message) {
                     channel.send('To start me listening for play events,  type  _@' + slack.self.name + ' start_ (I\'m _on_ by default)');
 
                 }
-
+                //TTS - use winsay if on windows, else use say CLI for mac
+                var hasSpeak = message.text.indexOf("say"); //search for speak  trigger
+                if((hasSpeak > -1) && (started === true)) {
+                    var toSpeak = message.text.substring(hasSpeak + 4);
+                    if(platform === 'win32') {
+                        winsay.speak("null", toSpeak);
+                    } else {
+                        exec('say ' + toSpeak);
+                    }
+                }
 
             }
         }
