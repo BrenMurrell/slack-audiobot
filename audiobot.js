@@ -89,7 +89,12 @@ slack.on('message', function(message) {
                 outputDevice = '';
             }
 
-
+            var hasSpeak = message.text.indexOf("speak"); //search for speak  trigger
+            if((hasSpeak > -1) && (started === true)) {
+                var toSpeak = 'say ' + message.text.substring(hasSpeak + 6);
+                exec(toSpeak);
+                console.log(toSpeak);
+            }
             var hasPlay = message.text.indexOf("play"); //search for play trigger
             if((hasPlay > -1) && (started === true)) {
                 //if message has the word play in then try and play a message
@@ -147,6 +152,8 @@ slack.on('message', function(message) {
                     channel.send('To start me listening for play events,  type  _@' + slack.self.name + ' start_ (I\'m _on_ by default)');
 
                 }
+
+
             }
         }
 
