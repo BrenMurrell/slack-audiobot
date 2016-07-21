@@ -21,3 +21,8 @@ Here's a couple commands you might like to try:
 * `@BOTNAME stop` - stop the bot listening to requests for sounds
 * `@BOTNAME start` - start the bot listening to requests for sounds  (on by default)
 * `@BOTNAME say MESSAGE` - Make the bot speak via TTS.
+
+## Linux
+To enable the 'say' command, install [espeak](http://espeak.sourceforge.net/):
+
+    sudo apt-get install espeak
