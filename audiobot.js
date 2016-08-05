@@ -155,6 +155,8 @@ slack.on('message', function(message) {
                     var toSpeak = message.text.substring(hasSpeak + 4);
                     if(platform === 'win32') {
                         winsay.speak("null", toSpeak);
+                    } else if(platform === 'linux') {
+                        exec('espeak ' + toSpeak);
                     } else {
                         exec('say ' + toSpeak);
                     }
